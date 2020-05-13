@@ -2,7 +2,7 @@
   "name": "gitbook-plugin-mermaid-newface",
   "description": "Plugin for GitBook 3 which renders Mermaid flow from markdown. Tries to work cross platform (windows/unix)",
   "main": "index.js",
-  "version": "2.1.0",
+  "version": "3.0.0",
   "engines": {
     "gitbook": "*"
   },
@@ -22,9 +22,19 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/chriswessels/gitbook-plugin-mermaid-gb3.git"
+    "url": "git+https://github.com/TakuroFukamizu/gitbook-plugin-mermaid-newface.git"
   },
-  "author": "",
+  "author": "Takuro Fukamizu<takuro.f.1987@gmail.com>",
   "license": "ISC",
-  "homepage": "https://github.com/chriswessels/gitbook-plugin-mermaid-gb3#readme"
+  "keywords": [
+    "gitbook",
+    "mermaid",
+    "graph",
+    "chart",
+    "documentetion"
+  ],
+  "homepage": "https://github.com/TakuroFukamizu/gitbook-plugin-mermaid-newface",
+  "bugs": {
+    "url": "https://github.com/TakuroFukamizu/gitbook-plugin-mermaid-newface/issues"
+  }
 }
