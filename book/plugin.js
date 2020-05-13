@@ -1,9 +1,7 @@
 require([
   'gitbook'
 ], function (gitbook) {
-    console.log(gitbook);
     gitbook.events.bind('page.change', function () {
-      console.info('page.change');
       const config = {
         startOnLoad: true,
         securityLevel: 'loose'

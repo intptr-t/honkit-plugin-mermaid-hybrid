@@ -12,7 +12,6 @@ module.exports = {
       if (lang != 'mermaid') { 
         return block;
       }
-      console.log(block.body);
       const scopedBody = `<div class="mermaid">${block.body}</div>`;
       block.body = scopedBody;
       return block;
