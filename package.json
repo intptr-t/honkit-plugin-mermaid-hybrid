@@ -25,7 +25,7 @@
     "url": "git+https://github.com/TakuroFukamizu/gitbook-plugin-mermaid-newface.git"
   },
   "author": "Takuro Fukamizu<takuro.f.1987@gmail.com>",
-  "license": "ISC",
+  "license": "MIT",
   "keywords": [
     "gitbook",
     "mermaid",
