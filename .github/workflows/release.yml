@@ -19,7 +19,7 @@ jobs:
           registry-url: 'https://registry.npmjs.org'
       - name: install can-npm-publish and dependencies
         run: |
-          yarn install
+          yarn install --production=false
           yarn add can-npm-publish
       - name: build
         run: |
