@@ -19,8 +19,8 @@ jobs:
           registry-url: 'https://registry.npmjs.org'
       - name: install can-npm-publish and dependencies
         run: |
-          npm install can-npm-publish
-          npm ci
+          yarn install
+          yarn add can-npm-publish
       - name: check version and add tag
         env:
           GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
@@ -28,6 +28,6 @@ jobs:
           COMMIT: ${{github.sha}}
         run: ./ci/release.sh
       - name: release
-        run: npm publish
+        run: yarn publish
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
