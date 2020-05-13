@@ -30,6 +30,8 @@ jobs:
           REPO: ${{github.repository}}
           COMMIT: ${{github.sha}}
         run: ./ci/release.sh
+      - name: remove can-npm-publish
+        run: yarn remove can-npm-publish
       - name: release
         run: yarn publish
         env:
