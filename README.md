@@ -1,5 +1,10 @@
 ## Mermaid plugin for GitBook
 
+[![NPM Stats](https://nodei.co/npm/gitbook-plugin-mermaid-newface.png)](https://npmjs.org/package/gitbook-plugin-mermaid-newface/)  
+[![npm](https://img.shields.io/npm/v/gitbook-plugin-mermaid-newface.svg)](https://npmjs.org/package/gitbook-plugin-mermaid-newface)
+[![npm downloads](https://img.shields.io/npm/dm/gitbook-plugin-mermaid-newface.svg)](https://npmjs.org/package/gitbook-plugin-mermaid-newface)
+[![npm bundle size](https://img.shields.io/bundlephobia/min/gitbook-plugin-mermaid-newface.svg)](https://npmjs.org/package/gitbook-plugin-mermaid-newface)
+
 Plugin for [GitBook](https://github.com/GitbookIO/gitbook) 3 which renders [Mermaid](https://mermaid-js.github.io/mermaid) diagrams and flow charts detected in the book markdown.  
 
 💚 **THIS PLUGIN WAS BORN TO USING MERMAID V8.5 AND LATER AT GITBOOK** 💚
