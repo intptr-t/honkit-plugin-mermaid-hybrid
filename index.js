@@ -1,30 +1,27 @@
-var mermaidRegex = /^```mermaid((.*[\r\n]+)+?)?```$/im;
-
-function processMermaidBlockList(page) {
-
-  var match;
-
-  while ((match = mermaidRegex.exec(page.content))) {
-    var rawBlock = match[0];
-    var mermaidContent = match[1];
-    page.content = page.content.replace(rawBlock, '<div class="mermaid">' +
-      mermaidContent + '</div>');
-  }
-
-  return page;
-}
-
 module.exports = {
   website: {
     assets: './dist',
-    css: [
-      'mermaid/mermaid.css'
-    ],
     js: [
+      'mermaid/mermaid.min.js',
       'book/plugin.js'
     ]
   },
+  blocks: {
+    code: function (block) { 
+      const lang = block.kwargs.language;
+      if (lang != 'mermaid') { 
+        return block;
+      }
+      console.log(block.body);
+      const scopedBody = `<div class="mermaid">${block.body}</div>`;
+      block.body = scopedBody;
+      return block;
+    }
+  },
   hooks: {
-    'page:before': processMermaidBlockList
+    // init: () => { 
+    // },
+    // page: (page) => { 
+    // }
   }
 };
