@@ -40,8 +40,6 @@ const processBlock = (block) => {
       output = fs.readFileSync(outputFilePath, { encoding: 'utf-8' });
       break;
     default:
-      // const buffer = fs.readFileSync(outputFilePath);
-      // const datauri = parser.format(`.${format}`, buffer);
       const meta = Datauri(outputFilePath);
       output = `<img src="${meta.content}">`;
       if (DEBUG) console.log(output);
