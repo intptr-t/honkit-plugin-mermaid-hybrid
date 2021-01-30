@@ -9,6 +9,7 @@ Plugin for [GitBook](https://github.com/GitbookIO/gitbook) 3 which renders [Merm
 
 💚 **THIS PLUGIN WAS BORN TO USING MERMAID V8.5 AND LATER AT GITBOOK** 💚
 
+🎊 **NOW WE SWITCH TO USE THE [mermaid-cli](https://www.npmjs.com/package/@mermaid-js/mermaid-cli) FOR A BETTER EXPERIENCE AND PDF SUPPORT** 👍
 
 ### Support status
 
@@ -16,10 +17,13 @@ Plugin for [GitBook](https://github.com/GitbookIO/gitbook) 3 which renders [Merm
 - Flowcharts
 - Sequence diagrams
 - Gantt diagrams
+- Pie chart diagrams
+- Class diagram [NEW!!!!!]
 - Git graph - experimental at v8.5
 - Entity Relationship Diagrams - experimental at v8.5
 - State diagrams
-- Pie chart diagrams
+- User Journey Diagram [NEW!!!!!]
+
 
 #### Not Working yet
 - Class diagrams - experimental at v8.5
