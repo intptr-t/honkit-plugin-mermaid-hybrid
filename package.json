@@ -14,6 +14,8 @@
     "copy:book": "mkdir -p dist/book && cp -R book/ dist/book"
   },
   "dependencies": {
+    "@mermaid-js/mermaid-cli": "^8.9.0",
+    "crypto": "^1.0.1",
     "mermaid": ">=8.5.0"
   },
   "devDependencies": {
