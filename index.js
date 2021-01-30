@@ -15,7 +15,7 @@ const FORMAT = {
 
 let format = FORMAT.OTHER;
 
-const DEBUG = true;
+const DEBUG = false;
 
 const processBlock = (block) => {
   const source = block.body;
