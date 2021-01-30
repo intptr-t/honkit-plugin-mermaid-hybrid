@@ -2,44 +2,83 @@ const { execSync } = require('child_process');
 const path = require('path');
 const fs = require('fs');
 const crypto = require('crypto');
+const Datauri = require('datauri/sync');
 
-const ASSET_PATH = 'assets/images/mermaid/';
-const FORMAT = 'png';
+// prefix for temporary file
+const PREFIX = '.mermaid';
+
+// output format
+const FORMAT = {
+  WEBSITE: 'svg',
+  OTHER: 'png'
+};
+
+let format = FORMAT.OTHER;
 
 const DEBUG = true;
 
 const processBlock = (block) => {
   const source = block.body;
+
+  // compile mermaid.js code using cli
   const hash = crypto.createHash('sha1').update(source).digest('hex');
-  const inputFilePath = path.join(ASSET_PATH, `${hash}.mmd`);
-  const outputFilePath = path.join(ASSET_PATH, `${hash}.${FORMAT}`);
-  fs.writeFileSync(inputFilePath, source, { coding: 'utf-8' });
-  const stdout = execSync(`npx mmdc -i ${inputFilePath} -o ${outputFilePath}`);
-  if (DEBUG) console.log(stdout);
-  return `<img src=/${outputFilePath}>`;
+  const inputFilePath = path.resolve(path.join('.', `${PREFIX}_${hash}.mmd`));
+  const outputFilePath = path.resolve(path.join('.', `${PREFIX}_${hash}.${format}`));
+  if (DEBUG) console.log(inputFilePath, outputFilePath);
+  if (!fs.existsSync(inputFilePath)) { 
+    fs.writeFileSync(inputFilePath, source, { encoding: 'utf-8' });
+  }
+  if (!fs.existsSync(outputFilePath)) {
+    const stdout = execSync(`npx mmdc -i ${inputFilePath} -o ${outputFilePath}`);
+    if (DEBUG) console.log(stdout);
+  }
+  
+  // make result
+  let output = '';
+  switch (format) { 
+    case 'svg':
+      output = fs.readFileSync(outputFilePath, { encoding: 'utf-8' });
+      break;
+    default:
+      // const buffer = fs.readFileSync(outputFilePath);
+      // const datauri = parser.format(`.${format}`, buffer);
+      const meta = Datauri(outputFilePath);
+      output = `<img src="${meta.content}">`;
+      if (DEBUG) console.log(output);
+  }
+
+  // delete temporary files
+  fs.rmSync(outputFilePath);
+  fs.rmSync(inputFilePath);
+
+  return output;
 };
 
 module.exports = {
-  website: {
-    assets: './dist',
-    js: [
-      'mermaid/mermaid.min.js',
-      'book/plugin.js'
-    ]
-  },
   blocks: {
-    code: function (block) { 
+    code: (block) => { 
       const lang = block.kwargs.language;
       if (lang != 'mermaid') { 
         return block;
       }
-      block.body = processBlock(block);
+      try {
+        block.body = processBlock(block);
+      } catch(ex) { 
+        console.error(ex);
+      }
       return block;
     }
   },
   hooks: {
-    // init: () => { 
-    // },
+    init: function () { 
+      // Switch output format depends on build type(websiet or not)
+      if (DEBUG) console.log(this);
+      const name = this.output.name.toString();
+      switch (name) { 
+        case 'website': format = FORMAT.WEBSITE; break;
+        default: format = FORMAT.OTHER;
+      }
+    },
     // page: (page) => { 
     // }
   }

@@ -7,16 +7,10 @@
     "node": ">=10.16.3",
     "gitbook": ">=3.0.0"
   },
-  "scripts": {
-    "clean": "rimraf dist",
-    "build": "run-s clean copy:*",
-    "copy:assets": "mkdir -p dist/mermaid && cp ./node_modules/mermaid/dist/mermaid.min.js dist/mermaid",
-    "copy:book": "mkdir -p dist/book && cp -R book/ dist/book"
-  },
   "dependencies": {
     "@mermaid-js/mermaid-cli": "^8.9.0",
     "crypto": "^1.0.1",
-    "mermaid": ">=8.5.0"
+    "datauri": "^3.0.0"
   },
   "devDependencies": {
     "npm-run-all": "^4.1.5",
