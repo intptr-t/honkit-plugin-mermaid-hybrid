@@ -86,4 +86,15 @@ If you want to change the settings of mermaid, please add `pluginsConfig` in the
 }
 ```
 
+## Linux issue
+If you are using Docker, you will need to add a following configurations. 
+
+Create a puppeteer-config.json file in the your book directory root:  
+```json
+{
+  "args": ["--no-sandbox"]
+}
+```
+
+See. [Linux sandbox issue](https://github.com/mermaidjs/mermaid.cli#linux-sandbox-issue)
 
