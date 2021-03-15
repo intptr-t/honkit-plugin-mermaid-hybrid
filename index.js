@@ -24,12 +24,17 @@ const processBlock = (block) => {
   const hash = crypto.createHash('sha1').update(source).digest('hex');
   const inputFilePath = path.resolve(path.join('.', `${PREFIX}_${hash}.mmd`));
   const outputFilePath = path.resolve(path.join('.', `${PREFIX}_${hash}.${format}`));
+  const configFilePath = path.resolve(path.join('.', `puppeteer-config.json`));
+  const configFileOption = !fs.existsSync(inputFilePath)
+    ? ''
+    : `-p ${configFilePath}`;
   if (DEBUG) console.log(inputFilePath, outputFilePath);
   if (!fs.existsSync(inputFilePath)) { 
     fs.writeFileSync(inputFilePath, source, { encoding: 'utf-8' });
   }
   if (!fs.existsSync(outputFilePath)) {
     const stdout = execSync(`npx mmdc -i ${inputFilePath} -o ${outputFilePath}`);
+    const stdout = execSync(`npx mmdc ${configFileOption} -i ${inputFilePath} -o ${outputFilePath}`);
     if (DEBUG) console.log(stdout);
   }
   
