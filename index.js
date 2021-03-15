@@ -33,7 +33,6 @@ const processBlock = (block) => {
     fs.writeFileSync(inputFilePath, source, { encoding: 'utf-8' });
   }
   if (!fs.existsSync(outputFilePath)) {
-    const stdout = execSync(`npx mmdc -i ${inputFilePath} -o ${outputFilePath}`);
     const stdout = execSync(`npx mmdc ${configFileOption} -i ${inputFilePath} -o ${outputFilePath}`);
     if (DEBUG) console.log(stdout);
   }
