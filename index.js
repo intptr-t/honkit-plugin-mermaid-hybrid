@@ -25,7 +25,7 @@ const processBlock = (block) => {
   const inputFilePath = path.resolve(path.join('.', `${PREFIX}_${hash}.mmd`));
   const outputFilePath = path.resolve(path.join('.', `${PREFIX}_${hash}.${format}`));
   const configFilePath = path.resolve(path.join('.', `puppeteer-config.json`));
-  const configFileOption = !fs.existsSync(inputFilePath)
+  const configFileOption = !fs.existsSync(configFilePath)
     ? ''
     : `-p ${configFilePath}`;
   if (DEBUG) console.log(inputFilePath, outputFilePath);
