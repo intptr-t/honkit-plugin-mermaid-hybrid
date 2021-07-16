@@ -32,7 +32,7 @@ const processBlock = (block) => {
   }
   if (!fs.existsSync(outputFilePath)) {
     const configFileOption = fs.existsSync(configFilePath) ? `-p ${configFilePath}`  : '';
-    if (DEBUG) console.debug(
+    if (DEBUG) console.log(
       `Output file not found. Writing ${outputFilePath} with option: ${configFileOption}`
     );
     const stdout = execSync(`npx mmdc ${configFileOption} -i ${inputFilePath} -o ${outputFilePath}`);
