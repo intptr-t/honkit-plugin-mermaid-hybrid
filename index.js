@@ -27,7 +27,7 @@ const processBlock = (block) => {
   const configFilePath = path.resolve(path.join('.', `puppeteer-config.json`));
 
   if (!fs.existsSync(inputFilePath)) { 
-    if (DEBUG) console.debug(`Input file not found. Writing ${inputFilePath}`);
+    if (DEBUG) console.log(`Input file not found. Writing ${inputFilePath}`);
     fs.writeFileSync(inputFilePath, source, { encoding: 'utf-8' });
   }
   if (!fs.existsSync(outputFilePath)) {
