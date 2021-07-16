@@ -36,7 +36,7 @@ const processBlock = (block) => {
       `Output file not found. Writing ${outputFilePath} with option: ${configFileOption}`
     );
     const stdout = execSync(`npx mmdc ${configFileOption} -i ${inputFilePath} -o ${outputFilePath}`);
-    if (DEBUG) console.debug(stdout);
+    if (DEBUG) console.log(stdout);
   }
   
   // make result
