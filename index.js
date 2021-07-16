@@ -25,16 +25,18 @@ const processBlock = (block) => {
   const inputFilePath = path.resolve(path.join('.', `${PREFIX}_${hash}.mmd`));
   const outputFilePath = path.resolve(path.join('.', `${PREFIX}_${hash}.${format}`));
   const configFilePath = path.resolve(path.join('.', `puppeteer-config.json`));
-  const configFileOption = !fs.existsSync(inputFilePath)
-    ? ''
-    : `-p ${configFilePath}`;
-  if (DEBUG) console.log(inputFilePath, outputFilePath);
+
   if (!fs.existsSync(inputFilePath)) { 
+    if (DEBUG) console.debug(`Input file not found. Writing ${inputFilePath}`);
     fs.writeFileSync(inputFilePath, source, { encoding: 'utf-8' });
   }
   if (!fs.existsSync(outputFilePath)) {
+    const configFileOption = fs.existsSync(configFilePath) ? `-p ${configFilePath}`  : '';
+    if (DEBUG) console.debug(
+      `Output file not found. Writing ${outputFilePath} with option: ${configFileOption}`
+    );
     const stdout = execSync(`npx mmdc ${configFileOption} -i ${inputFilePath} -o ${outputFilePath}`);
-    if (DEBUG) console.log(stdout);
+    if (DEBUG) console.debug(stdout);
   }
   
   // make result
