@@ -27,7 +27,7 @@ const processBlock = (block) => {
   const outputFilePath = path.resolve(path.join('.', `${PREFIX}_${hash}.${format}`));
   const mermaidConfigFilePath = path.resolve(path.join('.', `${PREFIX}_${hash}.json`));
   const configFilePath = path.resolve(path.join('.', `puppeteer-config.json`));
-  const configFileOption = !fs.existsSync(inputFilePath)
+  const configFileOption = !fs.existsSync(configFilePath)
     ? ''
     : `-p ${configFilePath}`;
   if (DEBUG) console.log(inputFilePath, outputFilePath);
