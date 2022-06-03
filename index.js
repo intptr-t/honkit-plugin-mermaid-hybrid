@@ -14,6 +14,7 @@ const FORMAT = {
 };
 
 let format = FORMAT.OTHER;
+let config = {};
 
 const DEBUG = false;
 
@@ -24,6 +25,7 @@ const processBlock = (block) => {
   const hash = crypto.createHash('sha1').update(source).digest('hex');
   const inputFilePath = path.resolve(path.join('.', `${PREFIX}_${hash}.mmd`));
   const outputFilePath = path.resolve(path.join('.', `${PREFIX}_${hash}.${format}`));
+  const mermaidConfigFilePath = path.resolve(path.join('.', `${PREFIX}_${hash}.json`));
   const configFilePath = path.resolve(path.join('.', `puppeteer-config.json`));
   const configFileOption = !fs.existsSync(inputFilePath)
     ? ''
@@ -32,8 +34,10 @@ const processBlock = (block) => {
   if (!fs.existsSync(inputFilePath)) { 
     fs.writeFileSync(inputFilePath, source, { encoding: 'utf-8' });
   }
+  fs.writeFileSync(mermaidConfigFilePath, JSON.stringify(config), { encoding: 'utf-8' });
+
   if (!fs.existsSync(outputFilePath)) {
-    const stdout = execSync(`npx mmdc ${configFileOption} -i ${inputFilePath} -o ${outputFilePath}`);
+    const stdout = execSync(`npx mmdc ${configFileOption} -i ${inputFilePath} -o ${outputFilePath} -c ${mermaidConfigFilePath}`);
     if (DEBUG) console.log(stdout);
   }
   
@@ -52,6 +56,7 @@ const processBlock = (block) => {
   // delete temporary files
   fs.rmSync(outputFilePath);
   fs.rmSync(inputFilePath);
+  fs.rmSync(mermaidConfigFilePath);
 
   return output;
 };
@@ -75,6 +80,8 @@ module.exports = {
     init: function () { 
       // Switch output format depends on build type(websiet or not)
       if (DEBUG) console.log(this);
+      // Capture entire pluginsConfig object to pass on to cli
+      config = this.config.values.pluginsConfig["mermaid-newface"]
       const name = this.output.name.toString();
       switch (name) { 
         case 'website': format = FORMAT.WEBSITE; break;
