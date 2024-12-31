@@ -2,7 +2,7 @@
   "name": "honkit-plugin-mermaid-hybrid",
   "description": "Plugin for Honkit and GitBook 3 which renders Mermaid flow from markdown. Tries to work cross platform (windows/unix/mac)",
   "main": "index.js",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "engines": {
     "node": ">=22",
     "gitbook": ">=3.0.0"
