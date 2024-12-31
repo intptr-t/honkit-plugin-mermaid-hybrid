@@ -1,36 +1,41 @@
 {
-  "name": "gitbook-plugin-mermaid-newface",
-  "description": "Plugin for GitBook 3 which renders Mermaid flow from markdown. Tries to work cross platform (windows/unix/mac)",
+  "name": "honkit-plugin-mermaid-hybrid",
+  "description": "Plugin for Honkit and GitBook 3 which renders Mermaid flow from markdown. Tries to work cross platform (windows/unix/mac)",
   "main": "index.js",
-  "version": "4.1.0",
+  "version": "1.0.0",
   "engines": {
-    "node": ">=10.16.3",
+    "node": ">=22",
     "gitbook": ">=3.0.0"
   },
   "dependencies": {
-    "@mermaid-js/mermaid-cli": "^9.1.2",
-    "crypto": "^1.0.1",
-    "datauri": "^3.0.0"
+    "datauri": "^4.1.0"
   },
-  "devDependencies": {
-    "npm-run-all": "^4.1.5",
-    "rimraf": "^2.5.2"
+  "peerDependencies": {
+    "@mermaid-js/mermaid-cli": "*",
+    "honkit": "*",
+    "mermaid": "*"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/TakuroFukamizu/gitbook-plugin-mermaid-newface.git"
+    "url": "git+https://github.com/intptr-t/honkit-plugin-mermaid-hybrid.git"
   },
-  "author": "Takuro Fukamizu<takuro.f.1987@gmail.com>",
+  "author": "NIWA Tomonori",
   "license": "MIT",
   "keywords": [
+    "honkit",
     "gitbook",
     "mermaid",
     "graph",
     "chart",
-    "documentetion"
+    "documentation"
   ],
-  "homepage": "https://github.com/TakuroFukamizu/gitbook-plugin-mermaid-newface",
-  "bugs": {
-    "url": "https://github.com/TakuroFukamizu/gitbook-plugin-mermaid-newface/issues"
+  "homepage": "https://github.com/intptr-t/honkit-plugin-mermaid-hybrid",
+  "scripts": {
+    "copy-mermaid": "cp node_modules/mermaid/dist/mermaid.min.js lib/website/mermaid_11.4.1.min.js"
+  },
+  "overrides": {
+    "honkit": {
+      "send": "^1.1.0"
+    }
   }
 }

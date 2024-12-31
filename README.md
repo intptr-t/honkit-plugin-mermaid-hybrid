@@ -1,74 +1,21 @@
 ## Mermaid plugin for GitBook
 
-[![NPM Stats](https://nodei.co/npm/gitbook-plugin-mermaid-newface.png)](https://npmjs.org/package/gitbook-plugin-mermaid-newface/)  
-[![npm](https://img.shields.io/npm/v/gitbook-plugin-mermaid-newface.svg)](https://npmjs.org/package/gitbook-plugin-mermaid-newface)
-[![npm downloads](https://img.shields.io/npm/dm/gitbook-plugin-mermaid-newface.svg)](https://npmjs.org/package/gitbook-plugin-mermaid-newface)
-[![npm bundle size](https://img.shields.io/bundlephobia/min/gitbook-plugin-mermaid-newface.svg)](https://npmjs.org/package/gitbook-plugin-mermaid-newface)
+[![NPM Stats](https://nodei.co/npm/honkit-plugin-mermaid-hybrid.png)](https://npmjs.org/package/honkit-plugin-mermaid-hybrid/)
+[![npm](https://img.shields.io/npm/v/honkit-plugin-mermaid-hybrid.svg)](https://npmjs.org/package/honkit-plugin-mermaid-hybrid)
+[![npm downloads](https://img.shields.io/npm/dm/honkit-plugin-mermaid-hybrid.svg)](https://npmjs.org/package/honkit-plugin-mermaid-hybrid)
+[![npm bundle size](https://img.shields.io/bundlephobia/min/honkit-plugin-mermaid-hybrid.svg)](https://npmjs.org/package/honkit-plugin-mermaid-hybrid)
 
-Plugin for [GitBook](https://github.com/GitbookIO/gitbook) 3 which renders [Mermaid](https://mermaid-js.github.io/mermaid) diagrams and flow charts detected in the book markdown.  
+Plugin for [Honkit](https://github.com/honkit/honkit) or [GitBook](https://github.com/GitbookIO/gitbook/tree/3.2.2) 3 which renders [Mermaid](https://mermaid-js.github.io/mermaid) diagrams and flow charts detected in the book markdown.  
 
-💚 **THIS PLUGIN WAS BORN TO USING MERMAID V8.5 AND LATER AT GITBOOK** 💚
+**THIS PLUGIN WAS BORN TO USING MERMAID V11.4 AND LATER AT HONKIT/GITBOOKv3**
 
-🎊 **NOW WE SWITCH TO USE THE [mermaid-cli](https://www.npmjs.com/package/@mermaid-js/mermaid-cli) FOR A BETTER EXPERIENCE AND PDF SUPPORT** 👍
+Use mermaid-cli to generate PDFs using Mermaid.
+Generate a website using Mermaid, we give you the option of using mermaid-cli and Mermaid directly.
 
-### Support status
+## Installation
 
-#### Working
-- Flowcharts
-- Sequence diagrams
-- Gantt diagrams
-- Pie chart diagrams
-- Class diagram [NEW!!!!!]
-- Git graph - experimental at v8.5
-- Entity Relationship Diagrams - experimental at v8.5
-- State diagrams
-- User Journey Diagram [NEW!!!!!]
-
-
-#### Not Working yet
-- Class diagrams - experimental at v8.5
-
-
-### How to install it?
-
-You can use install via **NPM** / **yarn**:
-
-```bash
-$ npm install gitbook-plugin-mermaid-newface
-# or
-$ yarn add gitbook-plugin-mermaid-newface
-```
-
-And use it for your book with in the book.json:
-
-```json
-{
-  "plugins": ["mermaid-newface"]
-}
-```
-
-### How to use it?
-
-Just put the code into fenced code block and tag it **mermaid** key word like this:
-
-```mermaid
-sequenceDiagram
-    autonumber
-    Alice->>+John: Hello John, how are you?
-    Alice->>+John: John, can you hear me?
-    John-->>-Alice: Hi Alice, I can hear you!
-    John-->>-Alice: I feel great!
-```
-
-```mermaid
-stateDiagram
-    [*] --> Still
-    Still --> [*]
-
-    Still --> Moving
-    Moving --> Still
-    Moving --> Crash
-    Crash --> [*]
+```sh
+npm install honkit-plugin-mermaid-hybrid
 ```
 
 ## Config
@@ -77,19 +24,36 @@ If you want to change the settings of mermaid, please add `pluginsConfig` in the
 
 ```json
 {
-  "plugins": ["mermaid-newface"],
+  "plugins": ["mermaid-hybrid"],
   "pluginsConfig": {
-    "mermaid-newface": {
-      "theme": "neutral" // default, forest, dar, natural. see https://mermaid-js.github.io/mermaid/#/mermaidAPI?id=theme
+    "mermaid-hybrid": {
+      "plugin": {
+        "embed": false
+      },
+      "mermaid": {
+        "theme": "neutral" // default, forest, dar, natural. see https://mermaid-js.github.io/mermaid/#/mermaidAPI?id=theme
+      }
     }
   }
 }
 ```
 
+- pluginsConfig["mermaid-hybrid"].plugin
+    - **description**: configuration for _mermaid-hybrid_
+- pluginsConfig["mermaid-hybrid"].plugin.embed
+    - **description**: configuration for _mermaid-hybrid_
+      - If `true`, mermaid-cli is used during website build.
+      - Otherwise, i.e., false or undefined, the Mermaid prepared by this plugin is used directly at website build.
+      - Ignored when generating PDFs.
+- pluginsConfig["mermaid-hybrid"].mermaid
+    - **description**: configuration for _Mermaid_
+
 ## Linux issue
-If you are using Docker, you will need to add a following configurations. 
+
+If you are using Docker, you will need to add a following configurations.
 
 Create a puppeteer-config.json file in the your book directory root:  
+
 ```json
 {
   "args": ["--no-sandbox"]

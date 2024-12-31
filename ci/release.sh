@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # check this version is enable to release or not
-yarn -s run can-npm-publish
+npm run --silent can-npm-publish
 if [ $? -eq 1 ] ; then
   exit 255
 fi

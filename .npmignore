@@ -1,2 +1,7 @@
-bower_components/
-node_modules/
+*
+!lib/**/*
+!index.js
+!LICENSE
+!package-lock.json
+!package.json
+!README.md
