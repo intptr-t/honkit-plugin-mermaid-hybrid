@@ -18,6 +18,7 @@ try {
     console.warn('[mermaid-hybrid] Honkit built-in highlight plugin not found.');
   }
 }
+const highlightJs = require("highlight.js");
 
 // prefix for temporary file
 const PREFIX = '.mermaid';
@@ -103,7 +104,12 @@ module.exports = {
     code: (block) => {
       const lang = block.kwargs.language;
       if (lang !== 'mermaid') {
-        return buildInHonkitPluginHighlight?.blocks?.code?.(block) ?? block;
+        // fallback
+        const isSupportedLang = highlightJs.getLanguage(lang) ?? false;
+        if (isSupportedLang) {
+          return buildInHonkitPluginHighlight?.blocks?.code?.(block) ?? block;
+        }
+        return block;
       }
 
       try {
